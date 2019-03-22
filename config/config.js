@@ -66,6 +66,9 @@ export default {
             { path: '/mapControl/mouse', name: 'mouse', component: './mapControl/mouse/index' },
             { path: '/mapControl/scaleLine', name: 'ScaleLine', component: './mapControl/scaleLine/index' },
             { path: '/mapControl/overviewMap', name: 'OverviewMap', component: './mapControl/overviewMap/index' },
+            { path: '/mapControl/fullScreen', name: 'FullScreen', component: './mapControl/fullScreen/index' },
+            { path: '/mapControl/gride', name: 'Gride', component: './mapControl/gride/index' },
+            { path: '/mapControl/measure', name: 'measure', component: './mapControl/measure/index' },
           ]
         },
       ],

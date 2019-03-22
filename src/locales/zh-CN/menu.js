@@ -8,6 +8,9 @@ export default {
   'menu.mapControl.mouse': '鼠标位置',
   'menu.mapControl.ScaleLine': '比例尺',
   'menu.mapControl.OverviewMap': '鹰眼',
+  'menu.mapControl.FullScreen': '全屏显示',
+  'menu.mapControl.Gride': '网格信息',
+  'menu.mapControl.measure': '测量控件',
   'menu.more-blocks': '更多区块',
   
 
