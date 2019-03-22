@@ -1,0 +1,32 @@
+.mapWrapper {
+    width:100%;
+    height:500px;
+    position: relative;
+}
+.layerControl {
+    position:absolute;
+    bottom:5px;
+    min-width:200px;
+    max-height:200px; 
+    right:0px;  
+    top:5px;    
+    z-index:2001;   /*在地图容器中的层，要设置z-index的值让其显示在地图上层*/
+    color:#ffffff;
+    background-color:#4c4e5a;
+    border-width: 10px; /*边缘的宽度*/
+    border-radius: 10px;    /*圆角的大小 */ 
+    border-color: #000 #000 #000 #000;  /*边框颜色*/
+    opacity: 0.8;
+    .title {
+        font-weight:bold;
+        font-size:15px;
+        margin:10px;
+    }
+    .layerTree {
+        padding-left: 0;
+        li {
+            list-style:none; 
+            margin:5px 10px; 
+        }
+    }
+}
