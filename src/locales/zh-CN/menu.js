@@ -12,6 +12,8 @@ export default {
   'menu.mapControl.Gride': '网格信息',
   'menu.mapControl.measure': '测量控件',
   'menu.more-blocks': '更多区块',
+  'menu.interaction': '交互反应',
+  'menu.interaction.selectMove': '选择交互',
   
 
   'menu.account.center': '个人中心',

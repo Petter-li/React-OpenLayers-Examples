@@ -71,6 +71,15 @@ export default {
             { path: '/mapControl/measure', name: 'measure', component: './mapControl/measure/index' },
           ]
         },
+        {
+          name: 'interaction',
+          icon: 'interation',
+          path: '/interaction',
+          routes: [
+            { path: '/interaction', redirect: '/interaction/selectMove' },
+            { path: '/interaction/selectMove', name: 'selectMove', component: './interaction/selectMove/index' },
+          ]
+        },
       ],
     },
   ],

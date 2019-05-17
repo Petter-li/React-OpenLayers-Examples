@@ -64,6 +64,7 @@ class LayersC extends React.Component {
     }
 
     changeVisible = (layer, checked) => {
+        console.log(layer);
         layer.setVisible(checked);
     }
 
