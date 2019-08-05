@@ -80,6 +80,15 @@ export default {
             { path: '/interaction/selectMove', name: 'selectMove', component: './interaction/selectMove/index' },
           ]
         },
+        {
+          name: 'draw',
+          icon: 'highlight',
+          path: '/draw',
+          routes: [
+            { path: '/draw', redirect: '/draw/bezierLine' },
+            { path: '/draw/bezierLine', name: 'bezierLine', component: './draw/bezierLine/index' },
+          ]
+        },
       ],
     },
   ],
