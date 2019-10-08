@@ -87,6 +87,8 @@ export default {
           routes: [
             { path: '/draw', redirect: '/draw/bezierLine' },
             { path: '/draw/bezierLine', name: 'bezierLine', component: './draw/bezierLine/index' },
+            { path: '/draw/wind', name: 'windlizi', component: './draw/wind/index' },
+            { path: '/draw/animation', name: 'animation', component: './draw/animation/index' },
           ]
         },
       ],

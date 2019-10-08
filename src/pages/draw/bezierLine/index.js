@@ -82,7 +82,7 @@ class LayersC extends React.Component {
 
     render() {
         return (
-          <PageHeaderWrapper title='图层控件'>
+          <PageHeaderWrapper title='贝塞尔曲线运动'>
             <Card bordered={false}>
               <div id="mapDraw-bezierLine" className={styles.mapWrapper} />
             </Card>
