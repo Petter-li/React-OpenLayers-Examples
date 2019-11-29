@@ -18,6 +18,8 @@ export default {
   'menu.draw.bezierLine': '贝塞尔曲线',
   'menu.draw.windlizi': '风场粒子动画',
   'menu.draw.animation': '图标闪烁',
+  'menu.src': '多源地图',
+  'menu.src.baidumap': '百度定制地图',
   
   
 

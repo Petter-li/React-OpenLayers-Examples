@@ -91,6 +91,15 @@ export default {
             { path: '/draw/animation', name: 'animation', component: './draw/animation/index' },
           ]
         },
+        {
+          name: 'src',
+          icon: 'highlight',
+          path: '/src',
+          routes: [
+            { path: '/src', redirect: '/src/baidu' },
+            { path: '/src/baidumap', name: 'baidumap', component: './src/baidu/index' },
+          ]
+        },
       ],
     },
   ],
