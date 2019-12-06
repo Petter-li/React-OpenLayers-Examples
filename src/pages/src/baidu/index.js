@@ -6,7 +6,8 @@ import VectorLayer from 'ol/layer/Vector';
 import * as Proj from 'ol/proj';
 import * as olExtent from 'ol/extent';
 import projzh from 'projzh';
-import XYZ from 'ol/source/XYZ';
+//import XYZ from 'ol/source/XYZ';
+import TileImage from 'ol/source/TileImage';
 import { defaults as controlDefaults } from 'ol/control'
 import FullScreen from 'ol/control/FullScreen'
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
@@ -24,7 +25,7 @@ import styles from './index.less'
 /**
  * 两个难点
  * 1 百度地图在ol中会有地图偏移的问题，引入projzh解决
- * 2 百度个性化地图如何引入ol,通过更改网上已有的在线瓦片地图url地址中的参数来实现个性化,只能通过在线比对参数来更改参数
+ * 2 百度个性化地图如何引入ol,https://developer.baidu.com/map/custom/;看请求找参数
  */  
 
 
@@ -47,15 +48,15 @@ class BaiduMap extends React.Component {
         Proj.addCoordinateTransforms('EPSG:3857', baiduMercator, projzh.smerc2bmerc, projzh.bmerc2smerc);
 
         var bmercResolutions = new Array(19);
-        for (var i = 0; i < 19; ++i) {
-            bmercResolutions[i] = Math.pow(2, 18 - i);
+        for (var i = 0; i < 19; i++) {    
+            bmercResolutions[i] = Math.pow(2, 18 - i);    
         }
 
         var baidu = new TileLayer({
-            source: new XYZ({
+            source: new TileImage({
                 projection: 'baidu',
                 maxZoom: 18,
-                tileUrlFunction: function (tileCoord, pixelRatio, proj) {
+                tileUrlFunction: function (tileCoord) {
                     if (!tileCoord) {
                         return "";
                     }
@@ -69,9 +70,7 @@ class BaiduMap extends React.Component {
                     if (y < 0) {
                         y = "M" + (-y);
                     }
-                    // styles参数未转之前 在线转换地址 http://coolaf.com/zh/tool/ud 选择urlencode转换
-                    // t:land|e:g|c:#081734,t:building|e:g|c:#04406F,t:building|e:l|v:off,t:highway|e:g|c:#015B99,t:highway|e:l|v:off,t:arterial|e:g|c:#003051,t:arterial|e:l|v:off,t:green|e:g|v:off,t:water|e:g|c:#044161,t:subway|e:g.s|c:#003051,t:subway|e:l|v:off,t:railway|e:g|v:true,t:railway|e:l|v:true,t:all|e:l.t.s|c:#313131,t:all|e:l.t.f|c:#FFFFFF,t:manmade|e:g|v:off,t:manmade|e:l|v:off,t:local|e:g|v:off,t:local|e:l|v:off,t:subway|e:g|l:-65,t:railway|e:all|l:-40,t:boundary|e:g|c:#8b8787|l:-29|w:1,t:poi|e:l|v:off|c:#022338|e:l|v:off,t:road|e:g|v:off,t:road|e:l|v:off,t:road|e:g.s|c:#ffffff00,t:district|e:l|v:off,t:poi
-                     return "http://api2.map.bdimg.com/customimage/tile?&x=" + x + "&y=" + y + "&z=" + z + "&udt=20191119&scale=1&ak=E4805d16520de693a3fe707cdc962045&styles=t%3Aland%7Ce%3Ag%7Cc%3A%23081734%2Ct%3Abuilding%7Ce%3Ag%7Cc%3A%2304406F%2Ct%3Abuilding%7Ce%3Al%7Cv%3Aoff%2Ct%3Ahighway%7Ce%3Ag%7Cc%3A%23015B99%2Ct%3Ahighway%7Ce%3Al%7Cv%3Aoff%2Ct%3Aarterial%7Ce%3Ag%7Cc%3A%23003051%2Ct%3Aarterial%7Ce%3Al%7Cv%3Aoff%2Ct%3Agreen%7Ce%3Ag%7Cv%3Aoff%2Ct%3Awater%7Ce%3Ag%7Cc%3A%23044161%2Ct%3Asubway%7Ce%3Ag.s%7Cc%3A%23003051%2Ct%3Asubway%7Ce%3Al%7Cv%3Aoff%2Ct%3Arailway%7Ce%3Ag%7Cv%3Atrue%2Ct%3Arailway%7Ce%3Al%7Cv%3Atrue%2Ct%3Aall%7Ce%3Al.t.s%7Cc%3A%23313131%2Ct%3Aall%7Ce%3Al.t.f%7Cc%3A%23FFFFFF%2Ct%3Amanmade%7Ce%3Ag%7Cv%3Aoff%2Ct%3Amanmade%7Ce%3Al%7Cv%3Aoff%2Ct%3Alocal%7Ce%3Ag%7Cv%3Aoff%2Ct%3Alocal%7Ce%3Al%7Cv%3Aoff%2Ct%3Asubway%7Ce%3Ag%7Cl%3A-65%2Ct%3Arailway%7Ce%3Aall%7Cl%3A-40%2Ct%3Aboundary%7Ce%3Ag%7Cc%3A%238b8787%7Cl%3A-29%7Cw%3A1%2Ct%3Apoi%7Ce%3Al%7Cv%3Aoff%7Cc%3A%23022338%7Ce%3Al%7Cv%3Aoff%2Ct%3Aroad%7Ce%3Ag%7Cv%3Aoff%2Ct%3Aroad%7Ce%3Al%7Cv%3Aoff%2Ct%3Aroad%7Ce%3Ag.s%7Cc%3A%23ffffff00%2Ct%3Adistrict%7Ce%3Al%7Cv%3Aoff%2Ct%3Apoi";
+                    return `https://api.map.baidu.com/customimage/tile?&x=${x}&y=${y}&z=${z}&udt=20191119&scale=1&ak=8d6c8b8f3749aed6b1aff3aad6f40e37&styles=t%3Awater%7Ce%3Aall%7Cc%3A%23021019%2Ct%3Ahighway%7Ce%3Ag.f%7Cc%3A%23000000%2Ct%3Ahighway%7Ce%3Ag.s%7Cc%3A%23147a92%2Ct%3Aarterial%7Ce%3Ag.f%7Cc%3A%23000000%2Ct%3Aarterial%7Ce%3Ag.s%7Cc%3A%230b3d51%2Ct%3Alocal%7Ce%3Ag%7Cc%3A%23000000%2Ct%3Aland%7Ce%3Aall%7Cc%3A%2308304b%2Ct%3Arailway%7Ce%3Ag.f%7Cc%3A%23000000%2Ct%3Arailway%7Ce%3Ag.s%7Cc%3A%2308304b%2Ct%3Asubway%7Ce%3Ag%7Cl%3A-70%2Ct%3Abuilding%7Ce%3Ag.f%7Cc%3A%23000000%2Ct%3Aall%7Ce%3Al.t.f%7Cc%3A%23857f7f%2Ct%3Aall%7Ce%3Al.t.s%7Cc%3A%23000000%2Ct%3Abuilding%7Ce%3Ag%7Cc%3A%23022338%2Ct%3Agreen%7Ce%3Ag%7Cc%3A%23062032%2Ct%3Aboundary%7Ce%3Aall%7Cc%3A%231e1c1c%2Ct%3Amanmade%7Ce%3Ag%7Cc%3A%23022338%2Ct%3Apoi%7Ce%3Aall%7Cv%3Aoff%2Ct%3Adistrict%7Ce%3Aall%7Cv%3Aoff%2Ct%3Aroad%7Ce%3Aall%7Cv%3Aoff%2Ct%3Alabel%7Ce%3Al.t.f%7Cc%3A%23ffffffff%7Cw%3A1%2Ct%3Alabel%7Ce%3Al.i%7Cv%3Aoff`;
                 },
                 tileGrid: new TileGrid({
                     resolutions: bmercResolutions,

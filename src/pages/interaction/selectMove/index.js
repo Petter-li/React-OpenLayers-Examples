@@ -60,7 +60,7 @@ class selectMove extends React.Component {
     }
 
     getCountyMove(map, mapLayer){
-        // 地图的点击事件
+        // 地图的移动事件
         let selectPointerMove = new interactionSelect({
           layers:[mapLayer],
           condition : pointerMove,

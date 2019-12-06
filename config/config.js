@@ -78,6 +78,7 @@ export default {
           routes: [
             { path: '/interaction', redirect: '/interaction/selectMove' },
             { path: '/interaction/selectMove', name: 'selectMove', component: './interaction/selectMove/index' },
+            { path: '/interaction/draw', name: 'draw', component: './interaction/draw/index' },
           ]
         },
         {

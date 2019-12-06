@@ -17,6 +17,7 @@ import Context from './MenuContext';
 import SiderMenu from '@/components/SiderMenu';
 
 import 'ol/ol.css';// 全局引入Ol的样式文件
+import 'ol-ext/dist/ol-ext.css'
 import styles from './BasicLayout.less';
 
 const { Content } = Layout;
