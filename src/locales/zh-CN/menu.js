@@ -15,6 +15,7 @@ export default {
   'menu.interaction': '交互反应',
   'menu.interaction.selectMove': '选择交互',
   'menu.interaction.draw': '绘制交互',
+  'menu.interaction.export': '地图导出',
   'menu.draw': '地图绘制',
   'menu.draw.bezierLine': '贝塞尔曲线',
   'menu.draw.windlizi': '风场粒子动画',
